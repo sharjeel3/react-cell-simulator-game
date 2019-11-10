@@ -4,10 +4,12 @@ import { StyledButton } from './styles';
 type propTypes = {
   children?: React.ReactNode;
   onClick: (x: SyntheticEvent) => void;
+  light: boolean | undefined;
+  block: boolean | undefined;
 };
 
 export const Button: React.FC<any> = (props: propTypes): any => {
-  const { children, onClick } = props;
+  const { children, onClick, light, block } = props;
 
   const handleClick = (event: SyntheticEvent) => {
     // Local handler may not be needed but kept it here for completeness
@@ -16,5 +18,9 @@ export const Button: React.FC<any> = (props: propTypes): any => {
     }
   };
 
-  return <StyledButton onClick={handleClick}>{children}</StyledButton>;
+  return (
+    <StyledButton block={block} light={light} onClick={handleClick}>
+      {children}
+    </StyledButton>
+  );
 };

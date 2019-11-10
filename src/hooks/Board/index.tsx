@@ -21,7 +21,7 @@ export type aliveMapType = {
 export const useBoardHook = () => {
   const [aliveCells, setAliveCells] = useState<Array<cellType>>([]);
 
-  const handleClick = (payload: cellClickPayloadType): void => {
+  const handleCellClick = (payload: cellClickPayloadType): void => {
     const previousCells = aliveCells.filter(cell => cell.id !== payload.id);
     const alive = !(aliveCells.find(cell => cell.id === payload.id) || {}).alive;
     setAliveCells(alive ? [...previousCells, { ...payload, alive }] : [...previousCells]);
@@ -29,5 +29,5 @@ export const useBoardHook = () => {
 
   const aliveMap = getAliveMap(aliveCells);
 
-  return { onClick: handleClick, aliveMap };
+  return { onCellClick: handleCellClick, aliveMap };
 };

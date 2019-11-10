@@ -11,3 +11,8 @@ export const BoardRoot = styled.div`
   border: 1px solid black;
   margin: auto;
 `;
+
+export const ButtonWrap = styled.div`
+  margin: 1em auto;
+  text-align: center;
+`;
