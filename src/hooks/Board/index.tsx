@@ -27,7 +27,11 @@ export const useBoardHook = () => {
     setAliveCells(alive ? [...previousCells, { ...payload, alive }] : [...previousCells]);
   };
 
+  const handleResetClick = () => {
+    setAliveCells([]);
+  };
+
   const aliveMap = getAliveMap(aliveCells);
 
-  return { onCellClick: handleCellClick, aliveMap };
+  return { onCellClick: handleCellClick, onReset: handleResetClick, aliveMap };
 };
