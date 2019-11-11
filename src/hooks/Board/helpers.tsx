@@ -41,3 +41,9 @@ export const getXYWithWrap = (x: number, y: number) => {
 
   return { newX, newY };
 };
+
+export const getNextGenerationAliveStatus = (cell: cellType, aliveMap: aliveMapType) => {
+  const neighbors = getNeighbors(cell, aliveMap);
+  const aliveNeighborsCount = neighbors.filter(item => item.alive).length;
+  return !(aliveNeighborsCount < 2 || aliveNeighborsCount > 3);
+};

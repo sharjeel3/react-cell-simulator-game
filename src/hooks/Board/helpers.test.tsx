@@ -1,5 +1,5 @@
-import { getAliveMap, getXYWithWrap } from './helpers';
-import { cellType } from './index';
+import { getAliveMap, getNextGenerationAliveStatus, getXYWithWrap } from './helpers';
+import { aliveMapType, cellType } from './index';
 
 describe('Board Hook Helpers', () => {
   it('should return live map', () => {
@@ -27,5 +27,26 @@ describe('Board Hook Helpers', () => {
     const { newX: newX3, newY: newY3 } = getXYWithWrap(4, 0);
     expect(newX3).toBe(4);
     expect(newY3).toBe(10);
+  });
+
+  it('should provide live status for next generation', () => {
+    const one: cellType = { x: 2, y: 3, id: '23', alive: true };
+    const two: cellType = { x: 3, y: 4, id: '34', alive: true };
+    const three: cellType = { x: 4, y: 2, id: '42', alive: true };
+    const four: cellType = { x: 4, y: 3, id: '43', alive: true };
+    const five: cellType = { x: 4, y: 4, id: '44', alive: true };
+    const cells: Array<cellType> = [one, two, three, four, five];
+    const aliveMap: aliveMapType = {
+      '23': true,
+      '34': true,
+      '42': true,
+      '43': true,
+      '44': true
+    };
+    expect(getNextGenerationAliveStatus(cells[0], aliveMap)).toEqual(false);
+    expect(getNextGenerationAliveStatus(cells[1], aliveMap)).toEqual(true);
+    expect(getNextGenerationAliveStatus(cells[2], aliveMap)).toEqual(false);
+    expect(getNextGenerationAliveStatus(cells[3], aliveMap)).toEqual(true);
+    expect(getNextGenerationAliveStatus(cells[4], aliveMap)).toEqual(true);
   });
 });

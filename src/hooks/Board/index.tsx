@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getAliveMap, getNeighbors, getXYWithWrap } from './helpers';
+import {getAliveMap, getNeighbors, getNextGenerationAliveStatus, getXYWithWrap} from './helpers';
 
 export type cellType = {
   alive: boolean;
@@ -53,13 +53,11 @@ export const useBoardHook = () => {
 
     for (let ii = 0; ii < aliveCellsCount; ii++) {
       // Firstly find cells that will "live" to next generation
-      const neighbors = getNeighbors(aliveCells[ii], aliveMap);
-      const aliveNeighborsCount = neighbors.filter(item => item.alive).length;
-      if (aliveNeighborsCount < 2 || aliveNeighborsCount > 3) continue;
-      tempIds.push(aliveCells[ii].id);
-      tempCells.push({
-        ...aliveCells[ii]
-      });
+      const shouldLive = getNextGenerationAliveStatus(aliveCells[ii], aliveMap);
+      if (shouldLive) {
+        tempIds.push(aliveCells[ii].id);
+        tempCells.push({ ...aliveCells[ii] });
+      }
 
       // Find out new cells that should "come to life"
       const inactiveNeighbors = getNeighbors(aliveCells[ii], aliveMap).filter(cell => !cell.alive);
