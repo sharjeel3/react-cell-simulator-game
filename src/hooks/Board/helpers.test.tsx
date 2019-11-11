@@ -1,4 +1,4 @@
-import { getAliveMap } from './helpers';
+import {getAliveMap, getXYWithWrap} from './helpers';
 import { cellType } from './index';
 
 describe('Board Hook Helpers', () => {
@@ -13,5 +13,19 @@ describe('Board Hook Helpers', () => {
       '46': true,
       '29': true
     });
+  });
+
+  it('should wrap cells outside board', () => {
+    const { newX, newY } = getXYWithWrap(10, 9);
+    expect(newX).toBe(10);
+    expect(newY).toBe(9);
+
+    const { newX: newX2, newY: newY2 } = getXYWithWrap(11, 3);
+    expect(newX2).toBe(1);
+    expect(newY2).toBe(3);
+
+    const { newX: newX3, newY: newY3 } = getXYWithWrap(4, 0);
+    expect(newX3).toBe(4);
+    expect(newY3).toBe(10);
   });
 });
