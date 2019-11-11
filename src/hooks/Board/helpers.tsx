@@ -1,6 +1,10 @@
 import { aliveMapType, cellType } from './index';
 import { MAX_WIDTH, MAX_HEIGHT } from '../../constants';
 
+export const getId = (x: number, y: number): string => {
+  return `${x}${y}`;
+};
+
 export const getAliveMap = (aliveCells: Array<cellType>): aliveMapType => {
   return Object.assign(
     {},

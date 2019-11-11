@@ -1,4 +1,10 @@
-import { getAliveMap, getNeighbors, getNextGenerationAliveStatus, getXYWithWrap } from './helpers';
+import {
+  getAliveMap,
+  getId,
+  getNeighbors,
+  getNextGenerationAliveStatus,
+  getXYWithWrap
+} from './helpers';
 import { aliveMapType, cellType } from './index';
 
 describe('Board Hook Helpers', () => {
@@ -13,6 +19,10 @@ describe('Board Hook Helpers', () => {
       '46': true,
       '29': true
     });
+  });
+
+  it('should return Id', () => {
+    expect(getId(2, 5)).toBe('25');
   });
 
   it('should wrap cells outside board', () => {
