@@ -45,12 +45,13 @@ export const useBoardHook = () => {
   const doNextGeneration = () => {
     setIsWorking(true);
     setIsGameStarted(true);
-    const tempCells = [];
-    const tempIds = [];
 
-    const length = aliveCells.length;
+    const tempCells: Array<cellType> = [];
+    const tempIds: Array<string> = [];
 
-    for (let ii = 0; ii < length; ii++) {
+    const aliveCellsCount = aliveCells.length;
+
+    for (let ii = 0; ii < aliveCellsCount; ii++) {
       // Firstly find cells that will "live" to next generation
       const neighbors = getNeighbors(aliveCells[ii], aliveMap);
       const aliveNeighborsCount = neighbors.filter(item => item.alive).length;
