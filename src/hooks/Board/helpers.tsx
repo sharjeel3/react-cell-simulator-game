@@ -15,11 +15,12 @@ export const getNeighbors = (cell: cellType, aliveMap: aliveMapType) => {
   const result = [];
   for (let ii = x - 1; ii <= x + 1; ii++) {
     for (let jj = y - 1; jj <= y + 1; jj++) {
-      const id = `${ii}${jj}`;
-      if (id === cell.id) continue;
+      if (`${ii}${jj}` === cell.id) continue;
+      const { newX, newY } = getXYWithWrap(ii, jj);
+      const id = `${newX}${newY}`;
       result.push({
-        x: ii,
-        y: jj,
+        x: newX,
+        y: newY,
         id,
         alive: aliveMap[id] || false
       });
