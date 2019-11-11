@@ -21,6 +21,7 @@ export type aliveMapType = {
 export const useBoardHook = () => {
   const [aliveCells, setAliveCells] = useState<Array<cellType>>([]);
   const [isWorking, setIsWorking] = useState<boolean>(false);
+  const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
 
   const aliveMap = getAliveMap(aliveCells);
 
@@ -32,6 +33,7 @@ export const useBoardHook = () => {
 
   const handleResetClick = () => {
     setAliveCells([]);
+    setIsGameStarted(false);
   };
 
   const resetIsWorking = () => {
@@ -42,6 +44,7 @@ export const useBoardHook = () => {
 
   const doNextGeneration = () => {
     setIsWorking(true);
+    setIsGameStarted(true);
     const tempCells = [];
     const tempIds = [];
 
@@ -82,6 +85,7 @@ export const useBoardHook = () => {
     onReset: handleResetClick,
     onNextGenerationClick: handleNextGenerationClick,
     aliveMap,
-    isWorking
+    isWorking,
+    isGameStarted
   };
 };
