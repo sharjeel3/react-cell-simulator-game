@@ -18,7 +18,8 @@ for (let ii = 1; ii <= MAX_HEIGHT; ii++) {
 }
 
 export const Board: React.FC<any> = (): any => {
-  const { onCellClick, aliveMap, onReset } = useBoardHook();
+  const { onCellClick, aliveMap, onReset, onNextGenerationClick, isWorking } = useBoardHook();
+
   return (
     <BoardRoot>
       {rows.map((item, kk) => {
@@ -31,7 +32,9 @@ export const Board: React.FC<any> = (): any => {
         );
       })}
       <ButtonWrap>
-        <Button block>Next Generation</Button>
+        <Button disabled={isWorking} onClick={onNextGenerationClick} block>
+          Next Generation
+        </Button>
         <Button onClick={onReset} light>
           Reset
         </Button>
