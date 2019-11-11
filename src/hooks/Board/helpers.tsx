@@ -21,7 +21,7 @@ export const getNeighbors = (cell: cellType, aliveMap: aliveMapType) => {
     for (let jj = y - 1; jj <= y + 1; jj++) {
       if (`${ii}${jj}` === cell.id) continue;
       const { newX, newY } = getXYWithWrap(ii, jj);
-      const id = `${newX}${newY}`;
+      const id = getId(newX, newY);
       result.push({
         x: newX,
         y: newY,

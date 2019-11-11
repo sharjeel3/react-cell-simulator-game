@@ -1,6 +1,7 @@
 import React from 'react';
 import { CellRoot } from './styles';
 import { aliveMapType, cellClickPayloadType } from '../../hooks/Board';
+import { getId } from '../../hooks/Board/helpers';
 
 type propTypes = {
   onClick: (x: cellClickPayloadType) => void;
@@ -11,7 +12,7 @@ type propTypes = {
 
 export const Cell: React.FC<any> = (props: propTypes): any => {
   const { onClick, x, y, aliveMap } = props;
-  const id = `${x}${y}`;
+  const id = getId(x, y);
   const alive = aliveMap[id] || false;
   const handleClick = () => {
     const payload = {
