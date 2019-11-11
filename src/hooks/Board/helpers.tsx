@@ -32,7 +32,7 @@ export const getXYWithWrap = (x: number, y: number) => {
   let newX = x;
   let newY = y;
 
-  // Wrap the elements outside board
+  // Wrap the cells outside board
   if (newX > MAX_WIDTH) newX = newX - MAX_WIDTH;
   else if (newX < 1) newX = MAX_WIDTH + newX;
 
