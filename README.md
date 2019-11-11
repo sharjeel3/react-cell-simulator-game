@@ -1,6 +1,7 @@
 # Cell Simulator Game with React
 
-*What is it?* The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Cell Simulator by creating an initial configuration and observing how it evolves.
+**What is it?**
+> The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Cell Simulator by creating an initial configuration and observing how it evolves.
  
 It is built with following:
 
@@ -13,7 +14,7 @@ This project is bootstrapped with [Create React App](https://github.com/facebook
 
 ## Let me start the game!
 
-This project is deployed on Netlify for you to view and play. Visit this URL https://react-cell-simulator-game.netlify.com/ <br />
+This game is deployed on Netlify for you to view and play. Visit this URL https://react-cell-simulator-game.netlify.com/ <br />
 
 If you would like to run it locally, follow these instructions:
 1. You will need Node.js and npm installed on your machine. I have built and tested the application using Node.js version 10.16.3 and npm version 6.9.0. Download link is here https://nodejs.org/download/release/v10.16.3/.
@@ -58,7 +59,7 @@ Polyfills for IE11 are not currently included. Please use latest version of Goog
         - A Cell who "comes to life" outside the board should wrap at the other side of the board.
 * You can reset the game and start again
 * Have added a custom React hook to manage the state of alive cells and future generations
-* Board view 'use' custom hook to render the UI
+* Board view 'uses' custom hook to render the UI
 * Have added some unit tests to test essential logic for custom hook
 
 ## Approach
