@@ -53,8 +53,8 @@ export const useBoardHook = () => {
     for (let ii = 0; ii < length; ii++) {
       // Firstly find cells that will "live" to next generation
       const neighbors = getNeighbors(aliveCells[ii], aliveMap);
-      const activeNeighborsCount = neighbors.filter(item => item.alive).length;
-      if (activeNeighborsCount < 2 || activeNeighborsCount > 3) continue;
+      const aliveNeighborsCount = neighbors.filter(item => item.alive).length;
+      if (aliveNeighborsCount < 2 || aliveNeighborsCount > 3) continue;
       tempIds.push(aliveCells[ii].id);
       tempCells.push({
         ...aliveCells[ii]
@@ -64,8 +64,10 @@ export const useBoardHook = () => {
       const inactiveNeighbors = getNeighbors(aliveCells[ii], aliveMap).filter(cell => !cell.alive);
       const inactiveNeighborsLength = inactiveNeighbors.length;
       for (let jj = 0; jj < inactiveNeighborsLength; jj++) {
-        const x = getNeighbors(inactiveNeighbors[jj], aliveMap).filter(item => item.alive).length;
-        if (x === 3 && !tempIds.includes(inactiveNeighbors[jj].id)) {
+        const liveNeighborsCount = getNeighbors(inactiveNeighbors[jj], aliveMap).filter(
+          item => item.alive
+        ).length;
+        if (liveNeighborsCount === 3 && !tempIds.includes(inactiveNeighbors[jj].id)) {
           tempIds.push(inactiveNeighbors[jj].id);
           tempCells.push({ ...inactiveNeighbors[jj], alive: true });
         }
