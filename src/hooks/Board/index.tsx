@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getAliveMap, getNeighbors } from './helpers';
+import { getAliveMap, getNeighbors, getXYWithWrap } from './helpers';
 
 export type cellType = {
   alive: boolean;
@@ -68,8 +68,9 @@ export const useBoardHook = () => {
           item => item.alive
         ).length;
         if (liveNeighborsCount === 3 && !tempIds.includes(inactiveNeighbors[jj].id)) {
+          const { newX, newY } = getXYWithWrap(inactiveNeighbors[jj].x, inactiveNeighbors[jj].y);
           tempIds.push(inactiveNeighbors[jj].id);
-          tempCells.push({ ...inactiveNeighbors[jj], alive: true });
+          tempCells.push({ id: `${newX}${newY}`, x: newX, y: newY, alive: true });
         }
       }
     }
