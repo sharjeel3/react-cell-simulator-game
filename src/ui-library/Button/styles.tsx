@@ -4,6 +4,7 @@ import { colors } from '../brand/colors';
 type props = {
   light: boolean | undefined;
   block: boolean | undefined;
+  disabled: boolean | undefined;
 };
 
 export const StyledButton = styled.button`
@@ -19,4 +20,10 @@ export const StyledButton = styled.button`
   margin-bottom: 1em;
   ${(p: props) => p.light && `background-color: ${colors.grey}`}
   ${(p: props) => p.block && `display: block;`}
+  ${(p: props) =>
+    p.disabled &&
+    `
+    pointer-events: none;
+    opacity: 0.5;
+  `}
 `;

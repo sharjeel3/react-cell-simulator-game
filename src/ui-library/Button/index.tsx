@@ -6,10 +6,11 @@ type propTypes = {
   onClick: (x: SyntheticEvent) => void;
   light: boolean | undefined;
   block: boolean | undefined;
+  disabled: boolean | undefined;
 };
 
 export const Button: React.FC<any> = (props: propTypes): any => {
-  const { children, onClick, light, block } = props;
+  const { children, onClick, light, block, disabled } = props;
 
   const handleClick = (event: SyntheticEvent) => {
     // Local handler may not be needed but kept it here for completeness
@@ -19,7 +20,7 @@ export const Button: React.FC<any> = (props: propTypes): any => {
   };
 
   return (
-    <StyledButton block={block} light={light} onClick={handleClick}>
+    <StyledButton disabled={disabled} block={block} light={light} onClick={handleClick}>
       {children}
     </StyledButton>
   );
