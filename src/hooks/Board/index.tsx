@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {getAliveMap, getNeighbors, getNextGenerationAliveStatus, getXYWithWrap} from './helpers';
+import { getAliveMap, getNeighbors, getNextGenerationAliveStatus, getXYWithWrap } from './helpers';
 
 export type cellType = {
   alive: boolean;
