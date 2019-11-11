@@ -1,4 +1,4 @@
-import { getAliveMap, getNextGenerationAliveStatus, getXYWithWrap } from './helpers';
+import { getAliveMap, getNeighbors, getNextGenerationAliveStatus, getXYWithWrap } from './helpers';
 import { aliveMapType, cellType } from './index';
 
 describe('Board Hook Helpers', () => {
@@ -48,5 +48,26 @@ describe('Board Hook Helpers', () => {
     expect(getNextGenerationAliveStatus(cells[2], aliveMap)).toEqual(false);
     expect(getNextGenerationAliveStatus(cells[3], aliveMap)).toEqual(true);
     expect(getNextGenerationAliveStatus(cells[4], aliveMap)).toEqual(true);
+  });
+
+  it('should return all neighbors of a cell', () => {
+    const one: cellType = { x: 2, y: 3, id: '23', alive: true };
+    const aliveMap: aliveMapType = {
+      '23': true,
+      '34': true,
+      '42': true,
+      '43': true,
+      '44': true
+    };
+    expect(getNeighbors(one, aliveMap)).toEqual([
+      { x: 1, y: 2, id: '12', alive: false },
+      { x: 1, y: 3, id: '13', alive: false },
+      { x: 1, y: 4, id: '14', alive: false },
+      { x: 2, y: 2, id: '22', alive: false },
+      { x: 2, y: 4, id: '24', alive: false },
+      { x: 3, y: 2, id: '32', alive: false },
+      { x: 3, y: 3, id: '33', alive: false },
+      { x: 3, y: 4, id: '34', alive: true }
+    ]);
   });
 });
