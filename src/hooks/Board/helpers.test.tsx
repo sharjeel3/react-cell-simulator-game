@@ -1,4 +1,4 @@
-import {getAliveMap, getXYWithWrap} from './helpers';
+import { getAliveMap, getXYWithWrap } from './helpers';
 import { cellType } from './index';
 
 describe('Board Hook Helpers', () => {
